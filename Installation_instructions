@@ -30,17 +30,60 @@ Server:
  Storage Driver: ...
 
 8. Installed Docker Directly in Ubuntu (without Docker Desktop)
-1: Create Your Project Folder
-mkdir ~/cloud-app && cd ~/cloud-app
+Create Your Project Folder
+mkdir my-cloud-app
+cd my-cloud-app
+mkdir frontend backend
 
-2: Create docker-compose.yml
-These services include:
-A PostgreSQL database
-A FastApi backend (Python API)
-A React frontend
-An NGINX reverse proxy to route web traffic
-Monitoring tools: Prometheus, Grafana, and cAdvisor
-Adminer: a web UI for your database
+cd frontend
+npx create-react-app .
+output:
+Installing packages. This might take a couple of minutes...
+...
+Success! Created frontend at ...
+
+inside frontend folder:
+Testing the app:
+npm start
+
+
+❌ What went wrong:
+trying to run npm start inside the frontend folder, but it failed because there's no package.json. That means the React app was not created yet.
+
+run again:
+npx create-react-app .
+npm start
+
+React welcome page in your browser at http://localhost:3000.
+
+9. Dockerize the Frontend (React)
+create dockerfile:
+touch Dockerfile
+
+run:
+nano Dockerfile
+
+edit screen:
+FROM node:18
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+
+Dockerfile inside your frontend folder — ready to build.
+
+
+
+
+
+
+
 
 
 
