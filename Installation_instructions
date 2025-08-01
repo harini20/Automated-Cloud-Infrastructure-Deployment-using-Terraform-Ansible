@@ -1,0 +1,46 @@
+# Installation instructions
+Working on Ubuntu via WSL
+Install Ubuntu via WSL (Windows 10/11)
+1. Open PowerShell as Administrator
+2. Install WSL + Ubuntu in One Command
+wsl --install
+3. Wait for Ubuntu to Launch - linux username, password
+4. Verify Everything Works
+lsb_release -a
+output:
+Distributor ID: Ubuntu
+Release:        22.04
+
+
+5. Install Docker (Locally)
+sudo apt update
+sudo apt install -y docker.io
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo usermod -aG docker $USER
+
+6. restart unbuntu
+
+7. To Confirm It’s Running in ubuntu:
+docker info
+output:
+Server:
+ Containers: ...
+ Server Version: ...
+ Storage Driver: ...
+
+8. Installed Docker Directly in Ubuntu (without Docker Desktop)
+1: Create Your Project Folder
+mkdir ~/cloud-app && cd ~/cloud-app
+
+2: Create docker-compose.yml
+These services include:
+A PostgreSQL database
+A FastApi backend (Python API)
+A React frontend
+An NGINX reverse proxy to route web traffic
+Monitoring tools: Prometheus, Grafana, and cAdvisor
+Adminer: a web UI for your database
+
+
+
