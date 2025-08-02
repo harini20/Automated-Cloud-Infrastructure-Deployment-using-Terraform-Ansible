@@ -76,7 +76,57 @@ EXPOSE 3000
 
 CMD ["npm", "start"]
 
-Dockerfile inside your frontend folder — ready to build.
+#Dockerfile inside your frontend folder — ready to build.
+
+10. Packaging your frontend app into a Docker image.
+#inside the frontend/ folder:
+cd ~/cloud-app/frontend
+
+#Tells Docker to build an image
+docker build -t react-app .
+
+#output:
+Step 1/6 : FROM node:18
+...
+Successfully built abc123...
+Successfully tagged react-app:latest
+
+#Testing:
+docker run -p 3000:3000 react-app
+
+#open in browser:
+http://localhost:3000
+
+#same React screen — but now it’s running inside a Docker container.
+
+11. Push react-app to Docker Hub
+#Docker Login from WSL(Ubuntu)
+docker login
+
+#Username:
+#Password:
+
+#if worked
+Login Succeeded!!
+
+12. Tag and Push Your Frontend Image
+#Tag the image
+docker info # to find docker username
+docker tag react-app username/react-app:latest
+
+#Push the image to Docker Hub
+docker push username/react-app:latest
+
+output:
+The push refers to repository [docker.io/username/react-app]
+...
+latest: digest: sha256:...
+
+
+
+
+
+
 
 
 
